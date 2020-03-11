@@ -8,8 +8,8 @@ import com.wrapper.spotify.requests.authorization.client_credentials.ClientCrede
 import java.io.IOException;
 
 public class ClientCredentials {
-    private static final String clientId = "client";
-    private static final String clientSecret = "secret";
+    private static final String clientId = "";
+    private static final String clientSecret = "";
 
     public static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)

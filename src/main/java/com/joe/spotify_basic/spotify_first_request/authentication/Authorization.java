@@ -2,7 +2,6 @@ package com.joe.spotify_basic.spotify_first_request.authentication;
 
 import com.joe.spotify_basic.spotify_first_request.service.AuthorizationService;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
-import com.wrapper.spotify.model_objects.credentials.AuthorizationCodeCredentials;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class Authorization extends ClientCredentials{
     }
 
     @GetMapping("/refresh")
-    public static AuthorizationCodeCredentials refreshAcessToken(@RequestParam(value = "token") String refreshToken) throws IOException, SpotifyWebApiException {
+    public static String refreshAcessToken(@RequestParam(value = "token") String refreshToken) throws IOException, SpotifyWebApiException {
         return AuthorizationService.refreshAccessToken(refreshToken);
     }
 

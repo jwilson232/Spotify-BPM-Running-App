@@ -16,8 +16,6 @@ import java.net.URI;
 @Service
 public class AuthorizationService extends ClientCredentials {
 
-
-
     // Generates a URI that will redirect the user to log in with Spotify, returns a code in the URI once logged in
     public static ModelAndView generateAuthorizationURL() {
         AuthorizationCodeUriRequest authorizationCodeUriRequest =
@@ -53,16 +51,14 @@ public class AuthorizationService extends ClientCredentials {
         return null;
     }
 
-    public static AuthorizationCodeCredentials refreshAccessToken(String refreshToken) {
+    public static String refreshAccessToken(String refreshToken) {
         try {
             AuthorizationCodeRefreshRequest authorizationCodeRequest =
                     spotifyApi.authorizationCodeRefresh(spotifyApi.getClientId(), spotifyApi.getClientSecret(), refreshToken)
                             .build();
 
             final AuthorizationCodeCredentials refreshedAuthorizationCodeCredentials = authorizationCodeRequest.execute();
-//            ObjectMapper mapper = new ObjectMapper();
-//            String refreshedToken = mapper.writeValueAsString(refreshedAuthorizationCodeCredentials);
-            return refreshedAuthorizationCodeCredentials;
+            return refreshedAuthorizationCodeCredentials.getAccessToken();
         } catch (IOException | SpotifyWebApiException e) {
             System.out.println("Error in Authorization.java: " + e.getMessage());
         }
